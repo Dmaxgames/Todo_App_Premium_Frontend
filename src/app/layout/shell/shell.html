@@ -1,108 +1,161 @@
+<!-- src/app/layout/shell/shell.html -->
+
 <div class="min-h-screen bg-slate-950 text-slate-100 flex">
-  <!-- Sidebar -->
-  <aside
-    class="hidden md:flex w-64 flex-col bg-slate-950/90 border-r border-slate-800/70 shadow-[0_0_40px_rgba(0,0,0,0.8)]"
-  >
-    <!-- Logo -->
-    <div class="h-16 flex items-center px-6 border-b border-slate-800/70">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-slate-950/95 border-r border-slate-800 flex flex-col">
+    <!-- Logo / titre -->
+    <div class="h-16 flex items-center px-6 border-b border-slate-800">
       <div
-        class="h-9 w-9 rounded-2xl bg-emerald-500/90 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.9)]"
+        class="h-9 w-9 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold"
       >
-        🎮
+        T
       </div>
-      <div class="ml-3 leading-tight">
-        <div class="text-sm font-semibold tracking-wide text-slate-100">
+      <div class="ml-3">
+        <p class="text-[11px] uppercase tracking-[0.2em] text-slate-500">
           Todo Premium
-        </div>
-        <div class="text-[11px] text-slate-400 uppercase tracking-[0.2em]">
-          Frontend
-        </div>
+        </p>
+        <p class="text-sm font-semibold text-slate-100">
+          ADN-KC
+        </p>
       </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
-      <button
-        class="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-400 font-medium border border-emerald-500/40 shadow-[0_0_18px_rgba(16,185,129,0.55)]"
+    <nav class="mt-4 px-2 space-y-1">
+      <!-- Tableau de bord -->
+      <a
+        routerLink="/"
+        routerLinkActive="bg-slate-800/80 text-emerald-300"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-300 hover:bg-slate-800/60 hover:text-emerald-200 transition"
       >
         <span class="text-lg">🏠</span>
         <span>Tableau de bord</span>
-      </button>
+      </a>
 
-      <button
-        class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-emerald-400 hover:bg-slate-900/70 transition"
+      <!-- Mes tâches -->
+      <a
+        routerLink="/app/taches"
+        routerLinkActive="bg-slate-800/80 text-emerald-300"
+        class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-300 hover:bg-slate-800/60 hover:text-emerald-200 transition"
       >
         <span class="text-lg">✅</span>
         <span>Mes tâches</span>
-      </button>
+      </a>
 
-      <button
-        class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-emerald-400 hover:bg-slate-900/70 transition"
+      <!-- Équipe -->
+      <a
+        routerLink="/app/equipe"
+        routerLinkActive="bg-slate-800/80 text-emerald-300"
+        class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-300 hover:bg-slate-800/60 hover:text-emerald-200 transition"
       >
         <span class="text-lg">👥</span>
         <span>Équipe</span>
-      </button>
+      </a>
 
-      <button
-        class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-emerald-400 hover:bg-slate-900/70 transition"
+      <!-- Statistiques -->
+      <a
+        routerLink="/app/statistiques"
+        routerLinkActive="bg-slate-800/80 text-emerald-300"
+        class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-300 hover:bg-slate-800/60 hover:text-emerald-200 transition"
       >
         <span class="text-lg">📊</span>
         <span>Statistiques</span>
-      </button>
+      </a>
     </nav>
 
-    <!-- Footer sidebar -->
-    <div class="px-4 py-4 border-t border-slate-800/70 text-[11px] text-slate-500">
-      <div class="flex items-center justify-between mb-1">
+    <!-- Footer sidebar : Mode GX-Premium -->
+    <div class="mt-auto px-4 pb-4">
+      <p
+        class="text-[11px] text-slate-500 mb-2 flex items-center justify-between"
+      >
         <span>Mode GX-Premium</span>
-        <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]"></span>
-      </div>
-      <div class="h-1.5 w-full rounded-full bg-slate-900 overflow-hidden">
-        <div class="h-full w-3/4 bg-gradient-to-r from-emerald-400 via-cyan-400 to-fuchsia-500"></div>
+        <span
+          class="inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"
+        ></span>
+      </p>
+      <div class="h-1.5 rounded-full bg-slate-800 overflow-hidden">
+        <div
+          class="h-full w-3/4 bg-gradient-to-r from-emerald-400 via-cyan-400 to-fuchsia-500"
+        ></div>
       </div>
     </div>
   </aside>
 
-  <!-- Main area -->
+  <!-- MAIN AREA -->
   <div class="flex-1 flex flex-col">
-    <!-- Header -->
+    <!-- TOPBAR -->
     <header
-      class="h-16 flex items-center justify-between px-4 md:px-8 border-b border-slate-800/70 bg-slate-950/80 backdrop-blur-md shadow-[0_0_40px_rgba(15,23,42,0.9)]"
+      class="h-16 border-b border-slate-800/80 flex items-center justify-between px-6 bg-slate-950/90 backdrop-blur"
     >
-      <!-- Left -->
-      <div class="flex items-center gap-3">
-        <span
-          class="hidden sm:inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/40"
-        >
-          SYMFONY-TODO-PREMIUM
-        </span>
-        <span
-          class="hidden md:inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/40"
-        >
-          GX-DESIGN-PREMIUM
-        </span>
+      <!-- Gauche : titre + badges projet -->
+      <div class="flex items-center gap-4">
+        <div class="flex flex-col">
+          <span class="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+            Espace de travail
+          </span>
+          <span class="text-sm text-slate-200">
+            Tableau de bord Todo Premium
+          </span>
+        </div>
+
+        <div class="h-8 w-px bg-slate-800"></div>
+
+        <div class="flex items-center gap-2">
+          <span
+            class="px-3 py-1 rounded-full text-[11px] border border-emerald-500/50 bg-emerald-500/5 text-emerald-300"
+          >
+            SYMFONY-TODO-PREMIUM
+          </span>
+          <span
+            class="px-3 py-1 rounded-full text-[11px] border border-fuchsia-500/50 bg-fuchsia-500/5 text-fuchsia-300"
+          >
+            GX-DESIGN-PREMIUM
+          </span>
+        </div>
       </div>
 
-      <!-- Right -->
+      <!-- Droite : état + utilisateur -->
       <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 text-xs text-slate-400">
-          <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"></span>
-          <span>Frontend en ligne</span>
-        </div>
-        <button
-          class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-slate-700 text-xs text-slate-300 hover:border-emerald-400 hover:text-emerald-300 transition"
-        >
-          <span class="h-6 w-6 rounded-full bg-gradient-to-br from-slate-600 to-slate-900 flex items-center justify-center text-[13px]">
-            EM
+        <div class="flex items-center gap-2">
+          <span
+            class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"
+          ></span>
+          <span class="text-xs text-slate-400">
+            Connecté
           </span>
-          <span class="hidden sm:inline">Edmond Mbadu</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div
+            class="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-semibold"
+          >
+            EM
+          </div>
+          <div class="text-right">
+            <div class="text-xs font-medium text-slate-100">
+              {{ userName }}
+            </div>
+            <div class="text-[11px] text-slate-500">
+              {{ userSubtitle }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Bouton Déconnexion (pour l’instant purement visuel) -->
+        <button
+          type="button"
+          class="px-4 py-1.5 rounded-full text-[11px] border border-slate-700 bg-slate-900/70 hover:border-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition"
+        >
+          Déconnexion
         </button>
       </div>
     </header>
 
-    <!-- Content -->
-    <main class="flex-1 px-4 md:px-8 py-6">
-      <!-- Ici, toutes les pages Angular s'afficheront -->
+    <!-- CONTENU DES PAGES -->
+    <main class="flex-1 p-6">
+      <!-- Ici s’affichent Dashboard, Mes tâches, etc. -->
       <router-outlet></router-outlet>
     </main>
   </div>

@@ -1,0 +1,138 @@
+<div class="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+  <!-- Logo -->
+  <div class="flex flex-col items-center mb-8">
+    <img
+      src=""
+      alt=""
+      class="h-20 w-auto drop-shadow-[0_0_20px_rgba(0,255,180,0.25)]"
+    />
+  </div>
+
+  <!-- Card -->
+  <div
+    class="max-w-md w-full bg-slate-900/70 border border-slate-700/60 rounded-3xl shadow-xl shadow-emerald-500/10 backdrop-blur-xl p-8 space-y-8"
+  >
+    <!-- Header -->
+    <div class="flex items-center gap-3">
+      <div
+        class="h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-slate-950 font-bold text-xl"
+      >
+        T
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.25em] text-emerald-400/80">
+          Gestionnaire de Tâches
+        </p>
+        <h1 class="text-xl font-semibold text-slate-50">ADN-KC</h1>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-sm text-slate-400 leading-relaxed">
+      Entrez vos identifiants pour accéder à votre tableau de bord.
+    </p>
+
+    <!-- Formulaire -->
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="space-y-4"
+      novalidate
+    >
+      <!-- Email -->
+      <div class="space-y-1">
+        <label
+          for="email"
+          class="block text-xs font-medium tracking-wide text-slate-300 uppercase"
+        >
+          Adresse e-mail
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="vous@exemple.com"
+          class="w-full rounded-2xl bg-slate-900/80 border border-slate-700/80 px-3 py-2.5 text-sm text-slate-50 placeholder-slate-500 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/40 transition"
+        />
+
+        <!-- Erreurs email -->
+        <div class="text-xs text-red-400" *ngIf="email?.touched && email?.invalid">
+          <div *ngIf="email?.errors?.['required']">L'email est requis.</div>
+          <div *ngIf="email?.errors?.['email']">Format email invalide.</div>
+        </div>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="space-y-1">
+        <div class="flex items-center justify-between">
+          <label
+            for="password"
+            class="block text-xs font-medium tracking-wide text-slate-300 uppercase"
+          >
+            Mot de passe
+          </label>
+          <button
+            type="button"
+            class="text-xs text-emerald-400 hover:text-emerald-300 transition"
+          >
+            Mot de passe oublié ?
+          </button>
+        </div>
+
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          class="w-full rounded-2xl bg-slate-900/80 border border-slate-700/80 px-3 py-2.5 text-sm text-slate-50 placeholder-slate-500 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/40 transition"
+        />
+
+        <!-- Erreurs MDP -->
+        <div
+          class="text-xs text-red-400"
+          *ngIf="password?.touched && password?.invalid"
+        >
+          <div *ngIf="password?.errors?.['required']">Mot de passe requis.</div>
+          <div *ngIf="password?.errors?.['minlength']">
+            Minimum 6 caractères.
+          </div>
+        </div>
+      </div>
+
+      <!-- Option Remember -->
+      <div class="flex items-center justify-between text-xs text-slate-400">
+        <label class="inline-flex items-center gap-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            formControlName="remember"
+            class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-emerald-400 focus:ring-emerald-500/60"
+          />
+          <span>Se souvenir de moi</span>
+        </label>
+      </div>
+
+      <!-- Bouton -->
+      <button
+        type="submit"
+        [disabled]="form.invalid || isSubmitting"
+        class="w-full rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-500 text-slate-950 font-semibold text-sm py-2.5 mt-2 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-400/40 hover:translate-y-[1px] active:translate-y-[2px] transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {{ isSubmitting ? 'Connexion...' : 'Se connecter' }}
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div
+      class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500"
+    >
+      <span>GX-DARK MODE</span>
+      <a
+        routerLink="/app"
+        class="text-emerald-400 hover:text-emerald-300 font-medium"
+      >
+        Retour au tableau de bord
+      </a>
+    </div>
+  </div>
+</div>

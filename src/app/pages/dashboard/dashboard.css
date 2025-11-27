@@ -1,0 +1,145 @@
+/* Racine du dashboard : s'aligne avec le Shell existant */
+.dashboard-root {
+  padding: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* Fond en grille légère "GX" sur les cartes principales */
+.gx-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.gx-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(15, 118, 110, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(15, 118, 110, 0.08) 1px,
+      transparent 1px
+    );
+  background-size: 32px 32px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.gx-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(52, 211, 153, 0.18),
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+/* On garde le contenu au-dessus du décor */
+.gx-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Carte utilisateur (bandeau haut à droite) */
+.gx-card-user {
+  backdrop-filter: blur(18px);
+}
+
+/* Cartes statistiques hexagonales */
+.gx-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.gx-card-hex::before {
+  content: '';
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 1.75rem;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  opacity: 0.7;
+  pointer-events: none;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 18%,
+    100% 82%,
+    90% 100%,
+    10% 100%,
+    0% 82%,
+    0% 18%
+  );
+}
+
+/* Petite grille lumineuse en arrière-plan des cartes */
+.gx-card-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: linear-gradient(
+      to right,
+      rgba(15, 23, 42, 0.6) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.6) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(circle at top left, black, transparent 60%);
+  pointer-events: none;
+}
+
+/* Pastille de tendance sur les cartes stats */
+.gx-pill-metric {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: radial-gradient(
+    circle at top left,
+    rgba(16, 185, 129, 0.16),
+    rgba(15, 23, 42, 0.9)
+  );
+}
+
+/* Anneau "performance globale" (simple mais futuriste) */
+.gx-ring-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
+  background: conic-gradient(
+    rgba(16, 185, 129, 0.8) 0deg,
+    rgba(16, 185, 129, 0.7) 260deg,
+    rgba(15, 23, 42, 1) 260deg
+  );
+}
+
+.gx-ring-inner {
+  position: absolute;
+  inset: 0.35rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at center,
+    rgba(15, 23, 42, 1),
+    rgba(15, 23, 42, 0.8)
+  );
+  border: 1px solid rgba(15, 23, 42, 1);
+}
+
+/* Panel principal (tableau) pour un léger halo supplémentaire */
+.gx-panel-main::after {
+  background: radial-gradient(
+    circle at bottom left,
+    rgba(16, 185, 129, 0.16),
+    transparent 55%
+  );
+}
